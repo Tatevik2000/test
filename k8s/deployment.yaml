@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: django-app
-          image: tatev111/django-app-name:${{ github.sha }}
+          image: tatev111/django-app-name:{{params.imageTag}}
           ports:
             - containerPort: 8000
  
