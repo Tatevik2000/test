@@ -24,6 +24,7 @@ jobs:
           context: .
           push: true
           tags: ${{ env.IMAGE_NAME }}:${{ github.sha }}
-      - name: Set Image on Deployment
-        run: |
-          sed -i "s|\(image:.*\)|image: ${{ env.IMAGE_NAME }}:${{ github.sha }}|" k8s/deployment.yaml
+      - name: Update Image Version
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq eval '.spec.template.spec.containers[0].image = "${{ env.IMAGE_NAME }}:${{ github.sha }}"' -i k8s/deployment.yaml
