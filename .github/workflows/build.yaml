@@ -25,4 +25,5 @@ jobs:
           push: true
           tags: ${{ env.IMAGE_NAME }}:${{ github.sha }}
       - name: Set Image on Deployment
-        run: sed -i "s|\(image:.*\)|image: ${{ env.IMAGE_NAME }}:${{ github.sha }}|" k8s/deployment.yaml
+        run: |
+          sed -i "s|\(image:.*\)|image: ${{ env.IMAGE_NAME }}:${{ github.sha }}|" k8s/deployment.yaml
