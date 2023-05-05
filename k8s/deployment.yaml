@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: django-app
-          image: tatev111/django-app-name:{{params.imageTag}}
+          image: tatev111/django-app-name:new
           ports:
             - containerPort: 8000
  
