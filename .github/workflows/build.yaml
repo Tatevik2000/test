@@ -24,8 +24,7 @@ jobs:
           context: .
           push: true
           tags: ${{ env.IMAGE_NAME }}:${{ github.sha }}
-      - name: Update Image Version
-        uses: mikefarah/yq@master
-        with:
-          cmd: yq eval '(.spec.template.spec.containers[]|select(.name == "tatev111/django-app-name:new").image) = "${{ github.event.client_payload.image }}"' -i k8s/deployment.yaml
-      
+      - name: Set Image on Deployment
+        run: |
+            sed -i "s|\(image:.*\)|image: ${{ IMAGE_NAME }}:${{ env.IMAGE_TAG }}|" k8s/deployment.yaml
+            
