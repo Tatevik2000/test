@@ -27,4 +27,5 @@ jobs:
       - name: Update Image Version
         uses: mikefarah/yq@master
         with:
-          cmd: yq eval '.spec.template.spec.containers[0].image = "${{ env.IMAGE_NAME }}:${{ github.sha }}"' -i k8s/deployment.yaml
+          cmd: yq eval '(.spec.template.spec.containers[]|select(.name == "tatev111/django-app-name:new").image) = "${{ github.event.client_payload.image }}"' -i k8s/deployment.yaml
+      
