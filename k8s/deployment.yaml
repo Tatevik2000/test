@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: django-app
-          image: tatev111/django-app-name:9658e084e78994d286825c8fe708e606fe209fc0
+          image: tatev111/django-app-name:5a07af473e0765c52eda392f4a58e66a29014c6e
           ports:
-            - containerPort: 8000 
+            - containerPort: 8000
